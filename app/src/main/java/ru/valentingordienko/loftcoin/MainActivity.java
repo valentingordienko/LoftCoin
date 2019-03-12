@@ -1,4 +1,4 @@
-package valentingordienko.ru.loftcoin;
+package ru.valentingordienko.loftcoin;
 
 import android.os.Bundle;
 
