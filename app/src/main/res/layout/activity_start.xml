@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".screens.start.StartActivity">
 
-    <!--<ImageView
+    <ImageView
         android:id="@+id/start_top_corner"
         android:translationX="-101dp"
         android:layout_width="202dp"
         android:layout_height="166dp"
-        android:src="@drawable/bg_start_top_corner" />
+        android:src="@drawable/bg_start_top_corner"
+        tools:ignore="MissingConstraints" />
 
 
     <ImageView
@@ -65,6 +66,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_outer_circle" />
--->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
