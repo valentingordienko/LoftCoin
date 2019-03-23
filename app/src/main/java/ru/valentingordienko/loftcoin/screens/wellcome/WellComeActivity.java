@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.tabs.TabLayout;
+
 public class WellComeActivity extends AppCompatActivity {
 
     public static void start(Context context) {
@@ -34,6 +36,9 @@ public class WellComeActivity extends AppCompatActivity {
     @BindView(R.id.start_btn)
     Button startBtn;
 
+    @BindView(R.id.tab_dots)
+    TabLayout tabDots;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,8 @@ public class WellComeActivity extends AppCompatActivity {
         final Prefs prefs = ((App) getApplication()).getPrefs();
 
         pager.setAdapter(new WellComePagerAdapter(getSupportFragmentManager()));
+
+        tabDots.setupWithViewPager(pager, true);
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
