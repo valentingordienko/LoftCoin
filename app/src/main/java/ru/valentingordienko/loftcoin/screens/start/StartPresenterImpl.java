@@ -21,7 +21,6 @@ public class StartPresenterImpl implements StartPresenter {
     public StartPresenterImpl(Prefs prefs, Api api) {
         this.prefs = prefs;
         this.api = api;
-        this.view = view;
     }
 
     @Override
@@ -39,7 +38,7 @@ public class StartPresenterImpl implements StartPresenter {
 
         Fiat fiat = prefs.getFiatCurrency();
 
-        Call<RateResponse> call = api.rates(Api.CONVERT);
+        Call<RateResponse> call = api.rates("USD,EUR,RUB");
 
         call.enqueue(new Callback<RateResponse>() {
             @Override
