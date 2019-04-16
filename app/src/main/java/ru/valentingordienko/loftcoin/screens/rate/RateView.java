@@ -1,13 +1,13 @@
 package ru.valentingordienko.loftcoin.screens.rate;
 
 
-import ru.valentingordienko.loftcoin.data.api.model.Coin;
+import ru.valentingordienko.loftcoin.data.db.model.CoinEntity;
 
 import java.util.List;
 
 public interface RateView {
 
-    void setCoins(List<Coin> coins);
+    void setCoins(List<CoinEntity> coins);
 
     void setRefreshing(Boolean refreshing);
 
