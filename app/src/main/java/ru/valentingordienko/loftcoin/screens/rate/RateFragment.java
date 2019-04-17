@@ -22,12 +22,12 @@ import butterknife.ButterKnife;
 import ru.valentingordienko.loftcoin.App;
 import ru.valentingordienko.loftcoin.R;
 import ru.valentingordienko.loftcoin.data.api.Api;
-import ru.valentingordienko.loftcoin.data.api.model.Coin;
 import ru.valentingordienko.loftcoin.data.db.Database;
 import ru.valentingordienko.loftcoin.data.db.model.CoinEntity;
 import ru.valentingordienko.loftcoin.data.db.model.CoinEntityMapper;
 import ru.valentingordienko.loftcoin.data.db.model.CoinEntityMapperImpl;
 import ru.valentingordienko.loftcoin.data.prefs.Prefs;
+import timber.log.Timber;
 
 public class RateFragment extends Fragment implements RateView {
 
@@ -105,6 +105,7 @@ public class RateFragment extends Fragment implements RateView {
 
     @Override
     public void setCoins(List<CoinEntity> coins) {
+        Timber.d("setCoins: ");
         adapter.setItems(coins);
     }
 
