@@ -32,8 +32,8 @@ import io.reactivex.disposables.Disposable;
 
 public class ConverterFragment extends Fragment {
 
-    private static final String SOURCE_CURRENCY_BOTTOM_SHEET_TAG = "source_currency_bottom_sheet";
-    private static final String DESTINATION_CURRENCY_BOTTOM_SHEET_TAG = "destination_currency_bottom_sheet";
+    private static final String SRC_CUR_BOTTOM_SHEET_TAG = "source_currency_bottom_sheet";
+    private static final String DEST_CUR_BOTTOM_SHEET_TAG = "destination_currency_bottom_sheet";
 
 
     public ConverterFragment() {
@@ -102,12 +102,12 @@ public class ConverterFragment extends Fragment {
         }
 
 
-        Fragment bottomSheetSource = getFragmentManager().findFragmentByTag(SOURCE_CURRENCY_BOTTOM_SHEET_TAG);
+        Fragment bottomSheetSource = getFragmentManager().findFragmentByTag(SRC_CUR_BOTTOM_SHEET_TAG);
         if (bottomSheetSource != null) {
             ((CurrenciesBottomSheet) bottomSheetSource).setListener(sourceListener);
         }
 
-        Fragment bottomSheetDestination = getFragmentManager().findFragmentByTag(DESTINATION_CURRENCY_BOTTOM_SHEET_TAG);
+        Fragment bottomSheetDestination = getFragmentManager().findFragmentByTag(DEST_CUR_BOTTOM_SHEET_TAG);
         if (bottomSheetDestination != null) {
             ((CurrenciesBottomSheet) bottomSheetDestination).setListener(destinationListener);
         }
@@ -139,31 +139,31 @@ public class ConverterFragment extends Fragment {
 
     private void initInputs() {
 
-        Disposable disposable1 = viewModel.sourceCurrency().subscribe(s ->
+        Disposable disposableSourceCur = viewModel.sourceCurrency().subscribe(s ->
                 bindCurrency(s, sourceCurrencySymbolText, sourceCurrencySymbolName)
         );
 
-        Disposable disposable2 = viewModel.destinationCurrency().subscribe(s ->
+        Disposable disposableDestCur = viewModel.destinationCurrency().subscribe(s ->
                 bindCurrency(s, destinationCurrencySymbolText, destinationCurrencySymbolName)
         );
 
-        Disposable disposable3 = viewModel.destinationAmount().subscribe(s -> {
+        Disposable disposableDestAmount = viewModel.destinationAmount().subscribe(s -> {
             destinationAmount.setText(s);
         });
 
-        Disposable disposable4 = viewModel.selectSourceCurrency().subscribe(o ->
+        Disposable disposableSelectSourceCur = viewModel.selectSourceCurrency().subscribe(o ->
                 showCurrenciesBottomSheet(true)
         );
 
-        Disposable disposable5 = viewModel.selectDestinationCurrency().subscribe(o ->
+        Disposable disposableSelectDestCur = viewModel.selectDestinationCurrency().subscribe(o ->
                 showCurrenciesBottomSheet(false)
         );
 
-        disposables.add(disposable1);
-        disposables.add(disposable2);
-        disposables.add(disposable3);
-        disposables.add(disposable4);
-        disposables.add(disposable5);
+        disposables.add(disposableSourceCur);
+        disposables.add(disposableDestCur);
+        disposables.add(disposableDestAmount);
+        disposables.add(disposableSelectSourceCur);
+        disposables.add(disposableSelectDestCur);
     }
 
 
@@ -171,10 +171,10 @@ public class ConverterFragment extends Fragment {
         CurrenciesBottomSheet bottomSheet = new CurrenciesBottomSheet();
 
         if (source) {
-            bottomSheet.show(getFragmentManager(), SOURCE_CURRENCY_BOTTOM_SHEET_TAG);
+            bottomSheet.show(getFragmentManager(), SRC_CUR_BOTTOM_SHEET_TAG);
             bottomSheet.setListener(sourceListener);
         } else {
-            bottomSheet.show(getFragmentManager(), DESTINATION_CURRENCY_BOTTOM_SHEET_TAG);
+            bottomSheet.show(getFragmentManager(), DEST_CUR_BOTTOM_SHEET_TAG);
             bottomSheet.setListener(destinationListener);
         }
 

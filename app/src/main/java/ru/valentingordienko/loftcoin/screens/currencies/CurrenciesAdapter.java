@@ -64,8 +64,8 @@ public class CurrenciesAdapter extends RecyclerView.Adapter<CurrenciesAdapter.Cu
         }
 
         void bind(CoinEntity coin, CurrenciesAdapterListener listener) {
-            bindIcon(coin);
-            bindName(coin);
+            symbolText.setText(String.valueOf(coin.symbol.charAt(0)));
+            name.setText(itemView.getContext().getString(R.string.currencies_bottom_sheet_currency_name, coin.name, coin.symbol));
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
@@ -73,16 +73,5 @@ public class CurrenciesAdapter extends RecyclerView.Adapter<CurrenciesAdapter.Cu
                 }
             });
         }
-
-
-        private void bindIcon(CoinEntity coin) {
-
-            symbolText.setText(String.valueOf(coin.symbol.charAt(0)));
-        }
-
-        private void bindName(CoinEntity coin) {
-            name.setText(itemView.getContext().getString(R.string.currencies_bottom_sheet_currency_name, coin.name, coin.symbol));
-        }
-
     }
 }
