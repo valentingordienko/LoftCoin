@@ -12,6 +12,7 @@ import ru.valentingordienko.loftcoin.data.api.model.Coin;
 import ru.valentingordienko.loftcoin.data.db.Database;
 import ru.valentingordienko.loftcoin.data.db.model.CoinEntityMapper;
 import ru.valentingordienko.loftcoin.data.prefs.Prefs;
+import ru.valentingordienko.loftcoin.utils.Fiat;
 import timber.log.Timber;
 
 public class RatePresenterImpl implements RatePresenter {
@@ -91,5 +92,22 @@ public class RatePresenterImpl implements RatePresenter {
 
 
         disposables.add(disposable);
+    }
+
+    @Override
+    public void onMenuItemCurrencyClick() {
+        if (view != null) {
+            view.showCurrencyDialog();
+        }
+
+    }
+
+    @Override
+    public void onFiatCurrencySelected(Fiat currency) {
+        prefs.setFiatCurrency(currency);
+
+        if (view != null) {
+            view.invalidateRates();
+        }
     }
 }
